@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'com.synapticloop'
@@ -10,10 +11,17 @@ repositories {
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.apache.solr:solr-solrj:9.8.0'
+    implementation 'org.apache.tika:tika-core:3.0.0'
+    implementation 'org.apache.tika:tika-parsers:3.0.0'
+    implementation 'org.apache.tika:tika-parsers-standard-package:3.0.0'
+    implementation 'commons-io:commons-io:2.16.1'
 }
 
-test {
-    useJUnitPlatform()
+startScripts {
+    classpath = files( '$APP_HOME/lib/*' )
+}
+
+application {
+    mainClass = 'com.synapticloop.Main'
 }
